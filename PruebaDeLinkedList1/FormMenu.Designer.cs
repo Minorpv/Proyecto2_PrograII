@@ -41,15 +41,18 @@
             this.button2 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSplitButtonLista = new System.Windows.Forms.ToolStripSplitButton();
             this.simplementeEnlazadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doblementeEnlazadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.circularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.buttonOpenFile = new System.Windows.Forms.Button();
             this.groupBoxIngDatos.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -93,14 +96,14 @@
             // 
             this.textBoxDesc.Location = new System.Drawing.Point(115, 51);
             this.textBoxDesc.Name = "textBoxDesc";
-            this.textBoxDesc.Size = new System.Drawing.Size(287, 20);
+            this.textBoxDesc.Size = new System.Drawing.Size(401, 20);
             this.textBoxDesc.TabIndex = 4;
             // 
             // textBoxRuta
             // 
             this.textBoxRuta.Location = new System.Drawing.Point(115, 82);
             this.textBoxRuta.Name = "textBoxRuta";
-            this.textBoxRuta.Size = new System.Drawing.Size(287, 20);
+            this.textBoxRuta.Size = new System.Drawing.Size(401, 20);
             this.textBoxRuta.TabIndex = 5;
             // 
             // buttonAdd
@@ -108,7 +111,7 @@
             this.buttonAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonAdd.Location = new System.Drawing.Point(508, 303);
+            this.buttonAdd.Location = new System.Drawing.Point(158, 413);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(125, 58);
             this.buttonAdd.TabIndex = 9;
@@ -121,7 +124,7 @@
             this.buttonDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.buttonDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonDel.Location = new System.Drawing.Point(508, 367);
+            this.buttonDel.Location = new System.Drawing.Point(401, 413);
             this.buttonDel.Name = "buttonDel";
             this.buttonDel.Size = new System.Drawing.Size(125, 58);
             this.buttonDel.TabIndex = 11;
@@ -131,22 +134,23 @@
             // 
             // groupBoxIngDatos
             // 
+            this.groupBoxIngDatos.Controls.Add(this.buttonOpenFile);
             this.groupBoxIngDatos.Controls.Add(this.textBoxRuta);
             this.groupBoxIngDatos.Controls.Add(this.labelDesc);
             this.groupBoxIngDatos.Controls.Add(this.labelID);
             this.groupBoxIngDatos.Controls.Add(this.label1);
             this.groupBoxIngDatos.Controls.Add(this.textBoxID);
             this.groupBoxIngDatos.Controls.Add(this.textBoxDesc);
-            this.groupBoxIngDatos.Location = new System.Drawing.Point(18, 302);
+            this.groupBoxIngDatos.Location = new System.Drawing.Point(18, 277);
             this.groupBoxIngDatos.Name = "groupBoxIngDatos";
-            this.groupBoxIngDatos.Size = new System.Drawing.Size(438, 130);
+            this.groupBoxIngDatos.Size = new System.Drawing.Size(603, 130);
             this.groupBoxIngDatos.TabIndex = 12;
             this.groupBoxIngDatos.TabStop = false;
             this.groupBoxIngDatos.Text = "Ingreso de Datos";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(109, 367);
+            this.button2.Location = new System.Drawing.Point(109, 342);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(8, 8);
             this.button2.TabIndex = 15;
@@ -172,6 +176,12 @@
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(163, 45);
             this.toolStripLabel1.Text = "Imagenes";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(151, 45);
+            this.toolStripLabel2.Text = "                                                ";
             // 
             // toolStripSplitButtonLista
             // 
@@ -211,12 +221,6 @@
             this.circularToolStripMenuItem.Size = new System.Drawing.Size(275, 30);
             this.circularToolStripMenuItem.Text = "Circular";
             // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(151, 45);
-            this.toolStripLabel2.Text = "                                                ";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -229,6 +233,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(621, 207);
             this.dataGridView1.TabIndex = 19;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Column1
             // 
@@ -246,11 +251,27 @@
             this.Column3.Name = "Column3";
             this.Column3.Width = 1000;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "Escoga su imagen.png";
+            this.openFileDialog1.Filter = "Archivos PNG (*.png)|*.png| Archivos JPG(*.jpg)|*.jpg| Archivos JPGE (*.jpge)|*.j" +
+    "pge| Archivos GIF(*.gif)|*.gif";
+            // 
+            // buttonOpenFile
+            // 
+            this.buttonOpenFile.Location = new System.Drawing.Point(522, 82);
+            this.buttonOpenFile.Name = "buttonOpenFile";
+            this.buttonOpenFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenFile.TabIndex = 21;
+            this.buttonOpenFile.Text = "Abrir Archivo";
+            this.buttonOpenFile.UseVisualStyleBackColor = true;
+            this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(645, 453);
+            this.ClientSize = new System.Drawing.Size(645, 474);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button2);
@@ -294,6 +315,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button buttonOpenFile;
     }
 }
 

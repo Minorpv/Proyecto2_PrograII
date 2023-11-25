@@ -15,23 +15,17 @@ namespace PruebaDeLinkedList1
         {
         }
 
-        public void AgregarFoto()
+        public void AgregarFoto(Foto<string> foto)
         {
             //Lista Simplemente Enlazada
-            Foto<string> NewNodo = new Foto<string>();
-            LSM.Agregar(NewNodo);
-        }
-
-        public void Eliminar1()
-        {
-            //Eliminar nodo de la lista simplemente enlanzada
-            LSM.Eliminar1();
+            LSM.Agregar(foto);
         }
 
         public void EliminarFoto(int fotoID)
         {
             // Lógica para eliminar una foto de cada lista
             Foto<string> DelNodo = new Foto<string>();
+            DelNodo.ID = fotoID;
             LSM.Eliminar(DelNodo);
         }
         public void MostrarFotos()

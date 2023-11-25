@@ -13,8 +13,10 @@ namespace PruebaDeLinkedList1
 {
     public partial class FormMenu : Form
     {
+
         int id = 0;
         ListaSimplementeEnlazada<string> LSM = new ListaSimplementeEnlazada<string>();
+        Album album = new Album();
         public FormMenu()
         {
             InitializeComponent();
@@ -39,34 +41,37 @@ namespace PruebaDeLinkedList1
             string item = string.Concat($"ID: {id}  |  Descripción: {desc}|Ruta: {Ruta}");
             Foto<string> foto = new Foto<string>
             {
-                ID = id.ToString(),
+                ID = id,
                 Descripcion = desc,
                 RutaArchivo = Ruta
             };
-            LSM.Agregar(foto);
+            album.AgregarFoto(foto);
             int n = dataGridView1.Rows.Add();
             dataGridView1.Rows[n].Cells[0].Value = foto.ID;
             dataGridView1.Rows[n].Cells[1].Value = foto.Descripcion;
             dataGridView1.Rows[n].Cells[2].Value = foto.RutaArchivo;
-            id++;
             limpiarTextBox();
         }
 
-        private void buttonMod_Click(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs ID)
         {
-
+            id = ID.RowIndex;
+            textBoxID.Text = id.ToString();
         }
-
-
 
         private void buttonDel_Click(object sender, EventArgs e)
         {
-
+            if (id != -1) 
+            {
+                dataGridView1.Rows.RemoveAt(id);   
+            }
+            album.EliminarFoto(id);
+            limpiarTextBox();
         }
 
         private void limpiarTextBox() 
         {
-            textBoxID.Text = id.ToString();
+            textBoxID.Clear();
             textBoxDesc.Clear();
             textBoxRuta.Clear();
             textBoxDesc.Focus();
@@ -76,5 +81,17 @@ namespace PruebaDeLinkedList1
         {
 
         }
+
+        private void buttonOpenFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) 
+            {
+                //Codigo para abrir y guardar la ruta de acceso del archivo
+                textBoxRuta.Text = openFileDialog1.FileName;
+                textBoxDesc.Text = openFileDialog1.SafeFileName;
+            }
+        }
+
+
     }
 }

@@ -63,7 +63,7 @@ namespace PruebaDeLinkedList1
             }
 
             //Se elimina al primero
-            if (Primero == DelNodo)
+            if (Primero.ID == DelNodo.ID)
             {
                 Eliminar1();
             }
@@ -72,7 +72,7 @@ namespace PruebaDeLinkedList1
             Foto<T> anterior = Primero;
             Foto<T> Actual = Primero.Siguiente;
 
-            while (Actual != null && Actual != DelNodo) 
+            while (Actual != null && Actual.ID != DelNodo.ID) 
             {
                 anterior = Actual;
                 Actual = anterior.Siguiente;
