@@ -38,6 +38,7 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
             this.groupBoxIngDatos = new System.Windows.Forms.GroupBox();
+            this.buttonOpenFile = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -51,8 +52,6 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.buttonOpenFile = new System.Windows.Forms.Button();
             this.groupBoxIngDatos.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -147,6 +146,16 @@
             this.groupBoxIngDatos.TabIndex = 12;
             this.groupBoxIngDatos.TabStop = false;
             this.groupBoxIngDatos.Text = "Ingreso de Datos";
+            // 
+            // buttonOpenFile
+            // 
+            this.buttonOpenFile.Location = new System.Drawing.Point(522, 82);
+            this.buttonOpenFile.Name = "buttonOpenFile";
+            this.buttonOpenFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenFile.TabIndex = 21;
+            this.buttonOpenFile.Text = "Abrir Archivo";
+            this.buttonOpenFile.UseVisualStyleBackColor = true;
+            this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
             // 
             // button2
             // 
@@ -257,20 +266,12 @@
             this.openFileDialog1.Filter = "Archivos PNG (*.png)|*.png| Archivos JPG(*.jpg)|*.jpg| Archivos JPGE (*.jpge)|*.j" +
     "pge| Archivos GIF(*.gif)|*.gif";
             // 
-            // buttonOpenFile
-            // 
-            this.buttonOpenFile.Location = new System.Drawing.Point(522, 82);
-            this.buttonOpenFile.Name = "buttonOpenFile";
-            this.buttonOpenFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpenFile.TabIndex = 21;
-            this.buttonOpenFile.Text = "Abrir Archivo";
-            this.buttonOpenFile.UseVisualStyleBackColor = true;
-            this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
-            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(645, 474);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
@@ -316,7 +317,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button buttonOpenFile;
     }
 }

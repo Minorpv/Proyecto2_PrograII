@@ -11,6 +11,10 @@ namespace PruebaDeLinkedList1
     {
         ListaSimplementeEnlazada<string> LSM = new ListaSimplementeEnlazada<string>();
 
+        Foto<string> Actual = new Foto<string>();
+
+        public int Cont { get; set; } = 0;
+
         public Album()
         {
         }
@@ -28,9 +32,25 @@ namespace PruebaDeLinkedList1
             DelNodo.ID = fotoID;
             LSM.Eliminar(DelNodo);
         }
-        public void MostrarFotos()
+        public Foto<string> MostrarFotos()
         {
             // Lógica para mostrar todas las fotos de cada lista
+            Foto<string> foto = new Foto<string>();
+            if (Cont == 0)
+            {
+                Actual = LSM.Primero;
+            }
+            if (Actual.Siguiente == null)
+            {
+                foto.Descripcion = "Fin de la lista";
+                return foto;
+            }
+            else 
+            { 
+                Actual = Actual.Siguiente; 
+                Cont++; 
+            }
+            return Actual;
         }
 
         // Otros métodos según sea necesario
