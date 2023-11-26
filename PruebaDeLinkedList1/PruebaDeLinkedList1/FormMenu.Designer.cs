@@ -222,6 +222,7 @@
             this.doblementeEnlazadaToolStripMenuItem.Name = "doblementeEnlazadaToolStripMenuItem";
             this.doblementeEnlazadaToolStripMenuItem.Size = new System.Drawing.Size(275, 30);
             this.doblementeEnlazadaToolStripMenuItem.Text = "Doblemente Enlazada";
+            this.doblementeEnlazadaToolStripMenuItem.Click += new System.EventHandler(this.doblementeEnlazadaToolStripMenuItem_Click);
             // 
             // circularToolStripMenuItem
             // 

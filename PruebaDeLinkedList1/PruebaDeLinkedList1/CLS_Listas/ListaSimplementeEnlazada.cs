@@ -14,17 +14,15 @@ namespace PruebaDeLinkedList1
 
         public Foto<T> Ultimo { get; set; }
 
-        public int Cont { get; set;  }
+        public int ContLSM { get; set;  }
+
+        public int TipoDeLista = 0;
 
         //Constructor
-        public ListaSimplementeEnlazada(Foto<T> primero, Foto<T> ultimo)
+        public ListaSimplementeEnlazada()
         {
             Primero = null;
             Ultimo = null;
-        }
-
-        public ListaSimplementeEnlazada()
-        {
         }
 
         //Métodos
@@ -41,23 +39,23 @@ namespace PruebaDeLinkedList1
                 Ultimo.Siguiente = NewNodo;
                 Ultimo = NewNodo;
             }
-            Cont++;
+            ContLSM++;
         }
 
         public void Eliminar1() 
         {
-            if (Primero == null || Cont == 0) 
+            if (Primero == null || ContLSM == 0) 
             {
                 return;
             }
             Primero = Primero.Siguiente;
-            Cont--;
+            ContLSM--;
         }
 
         public void Eliminar(Foto<T> DelNodo)
         {
             //Lista vacía
-            if (Primero == null || Cont == 0)
+            if (Primero == null || ContLSM == 0)
             {
                 return;
             }
@@ -81,14 +79,10 @@ namespace PruebaDeLinkedList1
             if (Actual != null) 
             {
                 anterior.Siguiente = Actual.Siguiente;
-                Cont--;
+                ContLSM--;
             }
 
 
-        }
-        public void MostrarFotos() 
-        {
-            
         }
     }
 }

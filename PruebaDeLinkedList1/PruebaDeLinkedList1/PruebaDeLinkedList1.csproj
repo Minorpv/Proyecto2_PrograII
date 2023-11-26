@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Album.cs" />
+    <Compile Include="CLS_Listas\ListaCircular.cs" />
+    <Compile Include="CLS_Listas\ListaDoblementeLigada.cs" />
     <Compile Include="FormGaleria.cs">
       <SubType>Form</SubType>
     </Compile>

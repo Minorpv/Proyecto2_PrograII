@@ -96,11 +96,16 @@ namespace PruebaDeLinkedList1
 
         private void simplementeEnlazadaToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            album.TipoDeLista = 0;
             FormGaleria galeria = new FormGaleria(album);
             galeria.ShowDialog();
         }
 
-
-
+        private void doblementeEnlazadaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            album.TipoDeLista = 1;
+            FormGaleria galeria = new FormGaleria(album);
+            galeria.ShowDialog();
+        }
     }
 }

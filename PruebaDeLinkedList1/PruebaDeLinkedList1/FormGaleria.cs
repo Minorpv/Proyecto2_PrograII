@@ -26,15 +26,19 @@ namespace PruebaDeLinkedList1
 
         private void FormGaleria_Load(object sender, EventArgs e)
         {
-            foto = Lista.MostrarFotos();
+            foto = Lista.MostrarFotoSiguiente();
             pictureBox1.ImageLocation = foto.RutaArchivo;
             labelDesc.Text = foto.Descripcion;
             labelRuta.Text = foto.RutaArchivo;
+            if (Lista.TipoDeLista == 0) 
+            {
+                buttonAnt.Enabled = false;
+            }
         }
 
         private void buttonSig_Click(object sender, EventArgs e)
         {
-            foto = Lista.MostrarFotos();
+            foto = Lista.MostrarFotoSiguiente();
             pictureBox1.ImageLocation = foto.RutaArchivo;
             labelDesc.Text = foto.Descripcion;
             labelRuta.Text = foto.RutaArchivo;
@@ -43,9 +47,16 @@ namespace PruebaDeLinkedList1
         private void buttonReinicio_Click(object sender, EventArgs e)
         {
             Lista.Cont = 0;
-            this.Close();
             FormGaleria galeria = new FormGaleria(Lista);
             galeria.ShowDialog();
+        }
+
+        private void buttonAnt_Click(object sender, EventArgs e)
+        {
+            foto = Lista.MostrarFotoAnterior();
+            pictureBox1.ImageLocation = foto.RutaArchivo;
+            labelDesc.Text = foto.Descripcion;
+            labelRuta.Text = foto.RutaArchivo;
         }
     }
 }
