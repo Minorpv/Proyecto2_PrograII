@@ -8,3 +8,4 @@ C:\Users\minor\source\repos\PruebaDeLinkedList1\PruebaDeLinkedList1\bin\Debug\Pr
 C:\Users\minor\source\repos\PruebaDeLinkedList1\PruebaDeLinkedList1\obj\Debug\PruebaDeLinkedList1.FormMenu.resources
 C:\Users\minor\source\repos\PruebaDeLinkedList1\PruebaDeLinkedList1\obj\Debug\PruebaDeLinkedList1.exe
 C:\Users\minor\source\repos\PruebaDeLinkedList1\PruebaDeLinkedList1\obj\Debug\PruebaDeLinkedList1.pdb
+C:\Users\minor\source\repos\PruebaDeLinkedList1\PruebaDeLinkedList1\obj\Debug\PruebaDeLinkedList1.FormGaleria.resources
