@@ -113,7 +113,7 @@
             this.Controls.Add(this.labelDesc);
             this.Controls.Add(this.pictureBox1);
             this.Name = "FormGaleria";
-            this.Text = "Lista Simplemente Enlazada";
+            this.Text = "Album de fotos";
             this.Load += new System.EventHandler(this.FormGaleria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

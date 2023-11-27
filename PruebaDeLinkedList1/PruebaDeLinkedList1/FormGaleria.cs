@@ -12,25 +12,31 @@ namespace PruebaDeLinkedList1
 {
     public partial class FormGaleria : Form
     {
+        //Album de fotos recolectadas en el menú
         Album Lista = new Album();
 
+        //Propiedades
         public string Ruta { get; set; }
-
         Foto<string> foto { get; set; }
 
-        public FormGaleria(Album lista)
+        //Constructor
+        public FormGaleria(Album lista) //Pide el album que se creó en el menú
         {
             InitializeComponent();
+            //Y se establece con la lista tipo album de esta pestala
             Lista = lista;
         }
 
+        //Eventos
+
+        //Al cargar el formulario
         private void FormGaleria_Load(object sender, EventArgs e)
         {
-            foto = Lista.MostrarFotoSiguiente();
+            foto = Lista.MostrarFoto1();
             pictureBox1.ImageLocation = foto.RutaArchivo;
             labelDesc.Text = foto.Descripcion;
             labelRuta.Text = foto.RutaArchivo;
-            if (Lista.TipoDeLista == 0) 
+            if (Lista.TipoDeLista !=1) 
             {
                 buttonAnt.Enabled = false;
             }

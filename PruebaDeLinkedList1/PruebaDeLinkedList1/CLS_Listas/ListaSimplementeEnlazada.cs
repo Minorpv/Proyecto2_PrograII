@@ -9,11 +9,12 @@ namespace PruebaDeLinkedList1
 {
     public class ListaSimplementeEnlazada<T>
     {
-        //propiedades
+        //Apuntadores
         public Foto<T> Primero { get; set; }
 
         public Foto<T> Ultimo { get; set; }
 
+        //Propiedades
         public int ContLSM { get; set;  }
 
         public int TipoDeLista = 0;
@@ -26,29 +27,36 @@ namespace PruebaDeLinkedList1
         }
 
         //Métodos
+        //Agregar nodos a la lista
         public void Agregar(Foto<T> NewNodo) 
         {
-            if (Primero == null) 
+            if (Primero == null)
             {
                 //Si la lista es null está vacía y se agrega el primer dato
                 Primero = NewNodo;
                 Ultimo = NewNodo;
+                Ultimo.Siguiente = null;
             }
-            else 
+            else
             {
                 Ultimo.Siguiente = NewNodo;
                 Ultimo = NewNodo;
+                Ultimo.Siguiente = null;
             }
             ContLSM++;
         }
 
+        //Eliminar el primer nodo de la lista
         public void Eliminar1() 
         {
+            //Se asegura de que no sté vacía
             if (Primero == null || ContLSM == 0) 
             {
                 return;
             }
+            //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
             Primero = Primero.Siguiente;
+            //Se disminuye el contador
             ContLSM--;
         }
 
@@ -70,19 +78,17 @@ namespace PruebaDeLinkedList1
             Foto<T> anterior = Primero;
             Foto<T> Actual = Primero.Siguiente;
 
-            while (Actual != null && Actual.ID != DelNodo.ID) 
+            while (Actual != null && Actual.ID != DelNodo.ID)
             {
                 anterior = Actual;
                 Actual = anterior.Siguiente;
             }
 
-            if (Actual != null) 
+            if (Actual != null)
             {
                 anterior.Siguiente = Actual.Siguiente;
                 ContLSM--;
             }
-
-
         }
     }
 }
