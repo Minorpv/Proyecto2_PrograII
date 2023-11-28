@@ -92,11 +92,6 @@ namespace PruebaDeLinkedList1.CLS_Listas
                 //Ultimo de la lista
                 if (ContActual == ContLCLMax)
                 {
-                    actual = Ultimo;
-                    ContActual++;
-                }
-                else if (ContActual > ContLCLMax) 
-                {
                     actual = Primero;
                     ContActual = 1;
                 }

@@ -74,16 +74,15 @@ namespace PruebaDeLinkedList1
         {
             //Al tocar una fila de la data grid view ña casilla de la id cambia automáticamente
             //al indice la de la fila
-            idDGV = ID.RowIndex;
-            textBoxID.Text = dataGridView1.Rows[idDGV].Cells[0].Value.ToString();
-            id = int.Parse(textBoxID.Text);
+            id = ID.RowIndex;
+            textBoxID.Text = id.ToString();
         }
 
         //Eliminar un dato
         private void buttonDel_Click(object sender, EventArgs e)
         {
             //Se asegura de que haya un dato seleccionado dentro de la data grid view
-            if (idDGV != -1)
+            if (id != -1)
             {
                 //Si la id es nula no se hace nada
                 if (textBoxID.Text is null)
@@ -91,10 +90,10 @@ namespace PruebaDeLinkedList1
                     return;
                 }
                 //Sino se elimina el dato que está en la posición del id que queremos elimanar
-                dataGridView1.Rows.RemoveAt(idDGV);
+                dataGridView1.Rows.RemoveAt(id);
+                //Se elimina la foto del album
+                album.EliminarFoto(id);
             }
-            //Se elimina la foto del album
-            album.EliminarFoto(id);
             //Se limpian las textbox
             limpiarTextBox();
         }
