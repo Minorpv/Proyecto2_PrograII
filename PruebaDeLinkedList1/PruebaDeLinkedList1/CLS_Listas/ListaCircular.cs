@@ -11,11 +11,13 @@ namespace PruebaDeLinkedList1.CLS_Listas
         //Apuntadores
         public Foto<T> Primero { get; set; }
         public Foto<T> Ultimo { get; set; }
+        public Foto<T> actual { get; set; }
 
         //Propiedades
-        protected int ContLCL { get; set; }
+        public int ContLCLMax { get; set; }
 
-        public int TipoDeLista = 2;
+        public int ContActual { get; set; }
+
 
         //Constructor
         public ListaCircular()
@@ -32,72 +34,85 @@ namespace PruebaDeLinkedList1.CLS_Listas
             if (Primero == null) //Lista vacía
             {
                 Primero = NewNodo;
-                Ultimo = Primero;
                 Primero.Siguiente = Primero;
+                Ultimo = Primero;
+                
                 
             }
-            else //Se añade un nuevo nodo delpues del ultimo
+            else //Se añade un nuevo nodo despues del ultimo
             {
                 Ultimo.Siguiente = NewNodo;
                 NewNodo.Siguiente = Primero;
                 Ultimo = NewNodo;
             }
-        }
-
-        public void Eliminar1() 
-        {
-            //Se asegura de que no esté vacía
-            if (Primero == null || ContLCL == 0)
-            {
-                return;
-            }
-            //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
-            Primero = Primero.Siguiente;
-            //Se disminuye el contador
-            ContLCL--;
+            ContLCLMax++;
         }
 
         public void Eliminar(Foto<string> DelNodo)
         {
-            //Lista vacía
-            if (Primero == null || ContLCL == 0)
-            {
-                return;
-            }
+            Foto<T> anterior = null;
+            Foto<T> Actual = Primero;
 
-            //Se elimina al primero si se cumple la condición
-            if (Primero.ID == DelNodo.ID)
+            if (Primero != null)
             {
-                Eliminar1();
+                while (Actual != null && Actual.ID != DelNodo.ID)
+                {
+                    if (Actual.ID == DelNodo.ID)
+                    {
+                        //Se elimina al primero
+                        if (Primero.ID == DelNodo.ID)
+                        {
+                            //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
+                            Primero = Primero.Siguiente;
+                            Ultimo.Siguiente = Primero;
+                            //Se disminuye el contador
+                            ContLCLMax--;
+                        }
+                        else if (Ultimo.ID == DelNodo.ID)
+                        {
+                            anterior.Siguiente = Primero;
+                            Ultimo = anterior;
+                        }
+                        else
+                        {
+                            anterior.Siguiente = Actual.Siguiente;
+                        }
+                    }
+                    anterior = Actual;
+                    Actual = Actual.Siguiente;
+                }
             }
+        }
 
-            //Si no entra en ninguna de estas dos categorías se tiene que hacer la
-            ////transversa de la lista
-            Foto<T> anterior = Primero;
-            Foto<T> Actual = Primero.Siguiente;
-
-            //Se elimina el último
-            if (Ultimo.ID == DelNodo.ID)
+        public Foto<T> MostrarFotos()
+        {
+            //La lista no está vacía
+            if (Primero != null)
             {
-                anterior.Siguiente = Primero;
-                Ultimo = anterior;
+                //Ultimo de la lista
+                if (ContActual == ContLCLMax)
+                {
+                    actual = Ultimo;
+                    ContActual++;
+                }
+                else if (ContActual > ContLCLMax) 
+                {
+                    actual = Primero;
+                    ContActual = 1;
+                }
+                // Cualquier otro de la lista
+                else if (ContActual != 0 && ContActual != ContLCLMax)
+                {
+                    actual = actual.Siguiente;
+                    ContActual++;
+                }
+                else if (ContActual == 0)
+                {
+                    actual = Primero;
+                    ContActual++;
+                }
             }
-
-            while (Actual != null && Actual.ID != DelNodo.ID)
-            {
-                //Va avanzado por la ista hasta que se acabe y llegue a null o hasta que 
-                //encuentre la id a eliminar
-                anterior = Actual;
-                Actual = anterior.Siguiente;
-            }
-
-            if (Actual != null)
-            {
-                //Se eliminan los vinculos del nodo con los demás nodos de la lista
-                anterior.Siguiente = Actual.Siguiente;
-                //Se disminuye el contador
-                ContLCL--;
-            }
+            return actual;
         }
     }
 }

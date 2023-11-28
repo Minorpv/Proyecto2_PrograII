@@ -210,6 +210,7 @@
             this.toolStripSplitButtonLista.Size = new System.Drawing.Size(90, 45);
             this.toolStripSplitButtonLista.Text = "Listas";
             this.toolStripSplitButtonLista.ToolTipText = "Listas";
+            this.toolStripSplitButtonLista.ButtonClick += new System.EventHandler(this.toolStripSplitButtonLista_ButtonClick);
             // 
             // simplementeEnlazadaToolStripMenuItem
             // 
@@ -243,7 +244,7 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 63);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 51);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(621, 207);
             this.dataGridView1.TabIndex = 19;
@@ -253,11 +254,13 @@
             // 
             this.Column1.HeaderText = "ID";
             this.Column1.Name = "Column1";
+            this.Column1.Width = 40;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Descripción";
             this.Column2.Name = "Column2";
+            this.Column2.Width = 300;
             // 
             // Column3
             // 
@@ -324,12 +327,12 @@
         private System.Windows.Forms.ToolStripMenuItem doblementeEnlazadaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem circularToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonOpenFile;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 

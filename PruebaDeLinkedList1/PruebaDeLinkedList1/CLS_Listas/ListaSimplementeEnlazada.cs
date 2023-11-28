@@ -14,16 +14,20 @@ namespace PruebaDeLinkedList1
 
         public Foto<T> Ultimo { get; set; }
 
-        //Propiedades
-        public int ContLSM { get; set;  }
+        public Foto<T> actual { get; set; }
 
-        public int TipoDeLista = 0;
+        //Propiedades
+        public int ContLSMMax { get; set;  }
+        public int ContActual { get; set; }
+
 
         //Constructor
         public ListaSimplementeEnlazada()
         {
             Primero = null;
             Ultimo = null;
+            ContActual = 0;
+            ContLSMMax = 0;
         }
 
         //Métodos
@@ -34,61 +38,81 @@ namespace PruebaDeLinkedList1
             {
                 //Si la lista es null está vacía y se agrega el primer dato
                 Primero = NewNodo;
+                Primero.Siguiente = null;
                 Ultimo = NewNodo;
-                Ultimo.Siguiente = null;
             }
             else
             {
                 Ultimo.Siguiente = NewNodo;
+                NewNodo.Siguiente = null;
                 Ultimo = NewNodo;
-                Ultimo.Siguiente = null;
             }
-            ContLSM++;
+            ContLSMMax++;
         }
 
-        //Eliminar el primer nodo de la lista
-        public void Eliminar1() 
+        public void Eliminar(Foto<string> DelNodo)
         {
-            //Se asegura de que no sté vacía
-            if (Primero == null || ContLSM == 0) 
+            Foto<T> anterior = null;
+            Foto<T> Actual = Primero;
+
+            if (Primero != null) 
             {
-                return;
+                while (Actual != null && Actual.ID != DelNodo.ID)
+                {
+                    if (Actual.ID == DelNodo.ID) 
+                    {
+                        //Se elimina al primero
+                        if (Primero.ID == DelNodo.ID)
+                        {
+                            //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
+                            Primero = Primero.Siguiente;
+                            //Se disminuye el contador
+                        }
+                        else if (Ultimo.ID == DelNodo.ID)
+                        {
+                            anterior.Siguiente = null;
+                            Ultimo = anterior;
+                        }
+                        else
+                        {
+                            anterior.Siguiente = Actual.Siguiente;
+                        }
+                        ContLSMMax--;
+                    }
+                    anterior = Actual;
+                    Actual = Actual.Siguiente;
+                }
             }
-            //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
-            Primero = Primero.Siguiente;
-            //Se disminuye el contador
-            ContLSM--;
         }
 
-        public void Eliminar(Foto<T> DelNodo)
+        public Foto<T> MostrarFotos() 
         {
-            //Lista vacía
-            if (Primero == null || ContLSM == 0)
+            //La lista no está vacía
+            if (Primero != null) 
             {
-                return;
+                if (actual == Ultimo) 
+                {
+                    return actual;
+                }
+                //Ultimo de la lista
+                else if (ContActual == ContLSMMax)
+                {
+                    actual = Ultimo;
+                }
+                // Cualquier otro de la lista
+                else if (ContActual != 0 && ContActual != ContLSMMax)
+                {
+                    actual = actual.Siguiente;
+                    ContActual++;
+                }
+                else if (ContActual == 0)
+                {
+                    actual = Primero;
+                    ContActual++;
+                }
+                
             }
-
-            //Se elimina al primero
-            if (Primero.ID == DelNodo.ID)
-            {
-                Eliminar1();
-            }
-
-            //Si no entra en ninguna de estas dos categorías se tiene que hacer la tramsversa de la lista
-            Foto<T> anterior = Primero;
-            Foto<T> Actual = Primero.Siguiente;
-
-            while (Actual != null && Actual.ID != DelNodo.ID)
-            {
-                anterior = Actual;
-                Actual = anterior.Siguiente;
-            }
-
-            if (Actual != null)
-            {
-                anterior.Siguiente = Actual.Siguiente;
-                ContLSM--;
-            }
+            return actual;
         }
     }
 }

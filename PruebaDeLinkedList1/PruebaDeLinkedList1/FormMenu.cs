@@ -15,6 +15,8 @@ namespace PruebaDeLinkedList1
     {
         //Propiedades
         int id = 0;
+
+        int idDGV = 0;
         public int tipoDeLista { get; set; }
 
         //Album de fotos
@@ -72,23 +74,24 @@ namespace PruebaDeLinkedList1
         {
             //Al tocar una fila de la data grid view ña casilla de la id cambia automáticamente
             //al indice la de la fila
-            id = ID.RowIndex;
-            textBoxID.Text = id.ToString();
+            idDGV = ID.RowIndex;
+            textBoxID.Text = dataGridView1.Rows[idDGV].Cells[0].Value.ToString();
+            id = int.Parse(textBoxID.Text);
         }
 
         //Eliminar un dato
         private void buttonDel_Click(object sender, EventArgs e)
         {
             //Se asegura de que haya un dato seleccionado dentro de la data grid view
-            if (id != -1) 
+            if (idDGV != -1)
             {
                 //Si la id es nula no se hace nada
-                if (textBoxID.Text is null) 
+                if (textBoxID.Text is null)
                 {
                     return;
                 }
                 //Sino se elimina el dato que está en la posición del id que queremos elimanar
-                dataGridView1.Rows.RemoveAt(id);   
+                dataGridView1.Rows.RemoveAt(idDGV);
             }
             //Se elimina la foto del album
             album.EliminarFoto(id);
@@ -157,7 +160,9 @@ namespace PruebaDeLinkedList1
             textBoxDesc.Focus();
         }
 
+        private void toolStripSplitButtonLista_ButtonClick(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
