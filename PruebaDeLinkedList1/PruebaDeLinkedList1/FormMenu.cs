@@ -74,28 +74,37 @@ namespace PruebaDeLinkedList1
         {
             //Al tocar una fila de la data grid view ña casilla de la id cambia automáticamente
             //al indice la de la fila
-            id = ID.RowIndex;
-            textBoxID.Text = id.ToString();
+            idDGV = ID.RowIndex;
+            textBoxID.Text = idDGV.ToString();
         }
 
         //Eliminar un dato
         private void buttonDel_Click(object sender, EventArgs e)
         {
-            //Se asegura de que haya un dato seleccionado dentro de la data grid view
-            if (id != -1)
+            try
             {
-                //Si la id es nula no se hace nada
-                if (textBoxID.Text is null)
+                //Se asegura de que haya un dato seleccionado dentro de la data grid view
+                if (idDGV != -1)
                 {
-                    return;
+                    //Si la id es nula no se hace nada
+                    if (textBoxID.Text is null)
+                    {
+                        return;
+                    }
+                    //Sino se elimina el dato que está en la posición del id que queremos elimanar
+                    dataGridView1.Rows.RemoveAt(idDGV);
+                    id = idDGV;
                 }
-                //Sino se elimina el dato que está en la posición del id que queremos elimanar
-                dataGridView1.Rows.RemoveAt(id);
                 //Se elimina la foto del album
                 album.EliminarFoto(id);
+                //Se limpian las textbox
+                limpiarTextBox();
             }
-            //Se limpian las textbox
-            limpiarTextBox();
+            catch (Exception ex)
+            {
+                // Muestra el mensaje de error
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //Codigo para abrir y guardar la ruta de acceso del archivo

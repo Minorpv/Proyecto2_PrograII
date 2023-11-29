@@ -59,28 +59,28 @@ namespace PruebaDeLinkedList1
             {
                 while (Actual != null && Actual.ID != DelNodo.ID)
                 {
-                    if (Actual.ID == DelNodo.ID) 
-                    {
-                        //Se elimina al primero
-                        if (Primero.ID == DelNodo.ID)
-                        {
-                            //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
-                            Primero = Primero.Siguiente;
-                            //Se disminuye el contador
-                        }
-                        else if (Ultimo.ID == DelNodo.ID)
-                        {
-                            anterior.Siguiente = null;
-                            Ultimo = anterior;
-                        }
-                        else
-                        {
-                            anterior.Siguiente = Actual.Siguiente;
-                        }
-                        ContLSMMax--;
-                    }
                     anterior = Actual;
                     Actual = Actual.Siguiente;
+                }
+                if (Actual.ID == DelNodo.ID)
+                {
+                    //Se elimina al primero
+                    if (Primero.ID == DelNodo.ID)
+                    {
+                        //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
+                        Primero = Primero.Siguiente;
+                        //Se disminuye el contador
+                    }
+                    else if (Ultimo.ID == DelNodo.ID)
+                    {
+                        anterior.Siguiente = null;
+                        Ultimo = anterior;
+                    }
+                    else
+                    {
+                        anterior.Siguiente = Actual.Siguiente;
+                    }
+                    ContLSMMax--;
                 }
             }
         }

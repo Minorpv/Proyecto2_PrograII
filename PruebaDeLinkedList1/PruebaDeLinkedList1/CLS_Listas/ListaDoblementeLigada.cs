@@ -81,8 +81,12 @@ namespace PruebaDeLinkedList1.CLS_Listas
                         }
                         ContLDLMax--;
                     }
-                    anterior = Actual;
-                    Actual = Actual.Siguiente;
+                    else
+                    {
+                        anterior = Actual;
+                        Actual = Actual.Siguiente;
+                    }
+
                 }
             }
         }

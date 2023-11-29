@@ -78,8 +78,12 @@ namespace PruebaDeLinkedList1.CLS_Listas
                             anterior.Siguiente = Actual.Siguiente;
                         }
                     }
-                    anterior = Actual;
-                    Actual = Actual.Siguiente;
+                    else
+                    {
+                        anterior = Actual;
+                        Actual = Actual.Siguiente;
+                    }
+
                 }
             }
         }
