@@ -33,6 +33,7 @@
             this.labelRuta = new System.Windows.Forms.Label();
             this.buttonSig = new System.Windows.Forms.Button();
             this.buttonReinicio = new System.Windows.Forms.Button();
+            this.buttonAnt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,18 +89,31 @@
             this.buttonReinicio.UseVisualStyleBackColor = true;
             this.buttonReinicio.Click += new System.EventHandler(this.buttonReinicio_Click);
             // 
+            // buttonAnt
+            // 
+            this.buttonAnt.BackColor = System.Drawing.Color.Transparent;
+            this.buttonAnt.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonAnt.Location = new System.Drawing.Point(12, 138);
+            this.buttonAnt.Name = "buttonAnt";
+            this.buttonAnt.Size = new System.Drawing.Size(26, 166);
+            this.buttonAnt.TabIndex = 5;
+            this.buttonAnt.Text = "<";
+            this.buttonAnt.UseVisualStyleBackColor = false;
+            this.buttonAnt.Click += new System.EventHandler(this.buttonAnt_Click);
+            // 
             // FormGaleria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonAnt);
             this.Controls.Add(this.buttonReinicio);
             this.Controls.Add(this.buttonSig);
             this.Controls.Add(this.labelRuta);
             this.Controls.Add(this.labelDesc);
             this.Controls.Add(this.pictureBox1);
             this.Name = "FormGaleria";
-            this.Text = "Lista Simplemente Enlazada";
+            this.Text = "Album de fotos";
             this.Load += new System.EventHandler(this.FormGaleria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -114,5 +128,6 @@
         private System.Windows.Forms.Label labelRuta;
         private System.Windows.Forms.Button buttonSig;
         private System.Windows.Forms.Button buttonReinicio;
+        private System.Windows.Forms.Button buttonAnt;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenu));
             this.labelDesc = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
@@ -52,9 +53,11 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBoxIngDatos.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDesc
@@ -207,6 +210,7 @@
             this.toolStripSplitButtonLista.Size = new System.Drawing.Size(90, 45);
             this.toolStripSplitButtonLista.Text = "Listas";
             this.toolStripSplitButtonLista.ToolTipText = "Listas";
+            this.toolStripSplitButtonLista.ButtonClick += new System.EventHandler(this.toolStripSplitButtonLista_ButtonClick);
             // 
             // simplementeEnlazadaToolStripMenuItem
             // 
@@ -222,6 +226,7 @@
             this.doblementeEnlazadaToolStripMenuItem.Name = "doblementeEnlazadaToolStripMenuItem";
             this.doblementeEnlazadaToolStripMenuItem.Size = new System.Drawing.Size(275, 30);
             this.doblementeEnlazadaToolStripMenuItem.Text = "Doblemente Enlazada";
+            this.doblementeEnlazadaToolStripMenuItem.Click += new System.EventHandler(this.doblementeEnlazadaToolStripMenuItem_Click);
             // 
             // circularToolStripMenuItem
             // 
@@ -229,6 +234,7 @@
             this.circularToolStripMenuItem.Name = "circularToolStripMenuItem";
             this.circularToolStripMenuItem.Size = new System.Drawing.Size(275, 30);
             this.circularToolStripMenuItem.Text = "Circular";
+            this.circularToolStripMenuItem.Click += new System.EventHandler(this.circularToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -238,7 +244,7 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 63);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 51);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(621, 207);
             this.dataGridView1.TabIndex = 19;
@@ -248,11 +254,13 @@
             // 
             this.Column1.HeaderText = "ID";
             this.Column1.Name = "Column1";
+            this.Column1.Width = 40;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Descripción";
             this.Column2.Name = "Column2";
+            this.Column2.Width = 300;
             // 
             // Column3
             // 
@@ -265,6 +273,10 @@
             this.openFileDialog1.FileName = "Escoga su imagen.png";
             this.openFileDialog1.Filter = "Archivos PNG (*.png)|*.png| Archivos JPG(*.jpg)|*.jpg| Archivos JPGE (*.jpge)|*.j" +
     "pge| Archivos GIF(*.gif)|*.gif";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FormMenu
             // 
@@ -280,6 +292,7 @@
             this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonAdd);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMenu";
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -288,6 +301,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,11 +327,12 @@
         private System.Windows.Forms.ToolStripMenuItem doblementeEnlazadaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem circularToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonOpenFile;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button buttonOpenFile;
     }
 }
 

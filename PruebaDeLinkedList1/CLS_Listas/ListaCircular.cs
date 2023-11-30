@@ -1,54 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaDeLinkedList1
+namespace PruebaDeLinkedList1.CLS_Listas
 {
-    public class ListaSimplementeEnlazada<T>
+    public class ListaCircular<T>
     {
         //Apuntadores
         public Foto<T> Primero { get; set; }
-
         public Foto<T> Ultimo { get; set; }
-
         public Foto<T> actual { get; set; }
 
         //Propiedades
-        public int ContLSMMax { get; set;  }
+        public int ContLCLMax { get; set; }
+
         public int ContActual { get; set; }
 
 
         //Constructor
-        public ListaSimplementeEnlazada()
+        public ListaCircular()
         {
             Primero = null;
             Ultimo = null;
-            ContActual = 0;
-            ContLSMMax = 0;
         }
 
-        //Métodos
-        //Agregar nodos a la lista
-        public void Agregar(Foto<T> NewNodo) 
+        //Metodos
+
+        //Metodo para agregar nodos al final de la lista
+        public void Agregar(Foto<T> NewNodo)
         {
-            if (Primero == null)
+            if (Primero == null) //Lista vacía
             {
-                //Si la lista es null está vacía y se agrega el primer dato
                 Primero = NewNodo;
-                Primero.Siguiente = null;
-                Ultimo = NewNodo;
+                Primero.Siguiente = Primero;
+                Ultimo = Primero;
+                
+                
             }
-            else
+            else //Se añade un nuevo nodo despues del ultimo
             {
                 Ultimo.Siguiente = NewNodo;
-                NewNodo.Siguiente = null;
+                NewNodo.Siguiente = Primero;
                 Ultimo = NewNodo;
-                Ultimo.Siguiente = null;
             }
-            ContLSMMax++;
+            ContLCLMax++;
         }
 
         public bool Eliminar(Foto<T> DelNodo)
@@ -59,7 +56,7 @@ namespace PruebaDeLinkedList1
 
             if (Primero != null)
             {
-                while (Actual != null && !Actual.Equals(DelNodo))
+                while (Actual.Siguiente != Primero && !Actual.Equals(DelNodo))
                 {
                     anterior = Actual;
                     Actual = Actual.Siguiente;
@@ -71,11 +68,13 @@ namespace PruebaDeLinkedList1
                     {
                         //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
                         Primero = Primero.Siguiente;
+                        Ultimo.Siguiente = Primero;
                         //Se disminuye el contador
+                        
                     }
                     else if (Ultimo.Equals(DelNodo))
                     {
-                        anterior.Siguiente = null;
+                        anterior.Siguiente = Primero;
                         Ultimo = anterior;
                     }
                     else
@@ -83,29 +82,25 @@ namespace PruebaDeLinkedList1
                         anterior.Siguiente = Actual.Siguiente;
                     }
                     encontrado = true;
-                    ContLSMMax--;
+                    ContLCLMax--;
                 }
             }
             return encontrado;
         }
 
-
-        public Foto<T> MostrarFotos() 
+        public Foto<T> MostrarFotos()
         {
             //La lista no está vacía
-            if (Primero != null) 
+            if (Primero != null)
             {
-                if (actual == Ultimo) 
-                {
-                    return actual;
-                }
                 //Ultimo de la lista
-                else if (ContActual == ContLSMMax)
+                if (ContActual == ContLCLMax)
                 {
-                    actual = Ultimo;
+                    actual = Primero;
+                    ContActual = 1;
                 }
                 // Cualquier otro de la lista
-                else if (ContActual != 0 && ContActual != ContLSMMax)
+                else if (ContActual != 0 && ContActual != ContLCLMax)
                 {
                     actual = actual.Siguiente;
                     ContActual++;
@@ -115,7 +110,6 @@ namespace PruebaDeLinkedList1
                     actual = Primero;
                     ContActual++;
                 }
-                
             }
             return actual;
         }

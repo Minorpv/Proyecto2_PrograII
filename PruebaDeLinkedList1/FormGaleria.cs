@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,40 +13,57 @@ namespace PruebaDeLinkedList1
 {
     public partial class FormGaleria : Form
     {
+        //Album de fotos recolectadas en el menú
         Album Lista = new Album();
 
+        //Propiedades
         public string Ruta { get; set; }
-
         Foto<string> foto { get; set; }
 
-        public FormGaleria(Album lista)
+
+        //Constructor
+        public FormGaleria(Album album)
         {
             InitializeComponent();
-            Lista = lista;
+            Lista = album;
         }
 
+        //Eventos
+
+        //Al cargar el formulario
         private void FormGaleria_Load(object sender, EventArgs e)
         {
-            foto = Lista.MostrarFotos();
-            pictureBox1.ImageLocation = foto.RutaArchivo;
+            foto = Lista.MostrarFotoSiguiente();
             labelDesc.Text = foto.Descripcion;
             labelRuta.Text = foto.RutaArchivo;
+            pictureBox1.ImageLocation = foto.RutaArchivo;
         }
 
         private void buttonSig_Click(object sender, EventArgs e)
         {
-            foto = Lista.MostrarFotos();
-            pictureBox1.ImageLocation = foto.RutaArchivo;
+            foto = Lista.MostrarFotoSiguiente();
             labelDesc.Text = foto.Descripcion;
             labelRuta.Text = foto.RutaArchivo;
+            pictureBox1.ImageLocation = foto.RutaArchivo;
         }
 
         private void buttonReinicio_Click(object sender, EventArgs e)
         {
+            Lista.reinicioListas();
             Lista.Cont = 0;
             this.Close();
-            FormGaleria galeria = new FormGaleria(Lista);
-            galeria.ShowDialog();
+
+        }
+
+        private void buttonAnt_Click(object sender, EventArgs e)
+        {
+            foto = Lista.MostrarFotoAnterior();
+            if (foto != null) 
+            {
+                labelDesc.Text = foto.Descripcion;
+                labelRuta.Text = foto.RutaArchivo;
+                pictureBox1.ImageLocation = foto.RutaArchivo;
+            }
         }
     }
 }

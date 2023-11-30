@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaDeLinkedList1
+namespace PruebaDeLinkedList1.CLS_Listas
 {
-    public class ListaSimplementeEnlazada<T>
+    public class ListaDoblementeLigada<T>
     {
         //Apuntadores
         public Foto<T> Primero { get; set; }
@@ -17,40 +18,41 @@ namespace PruebaDeLinkedList1
         public Foto<T> actual { get; set; }
 
         //Propiedades
-        public int ContLSMMax { get; set;  }
+        public int ContLDLMax { get; set; }
         public int ContActual { get; set; }
 
 
+
         //Constructor
-        public ListaSimplementeEnlazada()
+        public ListaDoblementeLigada()
         {
             Primero = null;
             Ultimo = null;
-            ContActual = 0;
-            ContLSMMax = 0;
         }
 
-        //Métodos
-        //Agregar nodos a la lista
-        public void Agregar(Foto<T> NewNodo) 
+        //Metodos
+        //Agregar nodos al final de la lista
+        public void Agregar(Foto<T> NewNodo)
         {
             if (Primero == null)
             {
-                //Si la lista es null está vacía y se agrega el primer dato
                 Primero = NewNodo;
                 Primero.Siguiente = null;
-                Ultimo = NewNodo;
+                Primero.Anterior = null;
+                Ultimo = Primero;
             }
             else
             {
                 Ultimo.Siguiente = NewNodo;
                 NewNodo.Siguiente = null;
+                NewNodo.Anterior = Ultimo;
                 Ultimo = NewNodo;
                 Ultimo.Siguiente = null;
             }
-            ContLSMMax++;
+            ContLDLMax++;
         }
 
+        //Eliminar cualquier nodo de la lista
         public bool Eliminar(Foto<T> DelNodo)
         {
             bool encontrado = false;
@@ -69,10 +71,13 @@ namespace PruebaDeLinkedList1
                     //Se elimina al primero
                     if (Primero.Equals(DelNodo))
                     {
-                        //Se elimina todo vinvulo del primero nodo con los demás elementos de la lista
                         Primero = Primero.Siguiente;
-                        //Se disminuye el contador
+                        if (Primero != null)
+                        {
+                            Primero.Anterior = null;
+                        }
                     }
+                    //Se elimina el último
                     else if (Ultimo.Equals(DelNodo))
                     {
                         anterior.Siguiente = null;
@@ -81,39 +86,70 @@ namespace PruebaDeLinkedList1
                     else
                     {
                         anterior.Siguiente = Actual.Siguiente;
+                        if (Actual.Siguiente != null)
+                        {
+                            Actual.Siguiente.Anterior = anterior;
+                        }
                     }
                     encontrado = true;
-                    ContLSMMax--;
+                    ContLDLMax--;
                 }
             }
             return encontrado;
         }
 
-
-        public Foto<T> MostrarFotos() 
+        public Foto<T> MostrarFotoSiguiente() 
         {
-            //La lista no está vacía
+            //Lista no está vacía
             if (Primero != null) 
             {
-                if (actual == Ultimo) 
+                if (actual == Ultimo)
                 {
                     return actual;
                 }
-                //Ultimo de la lista
-                else if (ContActual == ContLSMMax)
+                //Estamos en el último nodo
+                else if (ContActual == ContLDLMax)
                 {
                     actual = Ultimo;
                 }
-                // Cualquier otro de la lista
-                else if (ContActual != 0 && ContActual != ContLSMMax)
+                //No estamo ni en el el primero ni en el último
+                else if (ContActual != 0 && ContActual != ContLDLMax)
                 {
                     actual = actual.Siguiente;
                     ContActual++;
                 }
+                //Estamos en el primero
                 else if (ContActual == 0)
                 {
                     actual = Primero;
                     ContActual++;
+                }
+                
+            }
+            return actual;
+        }
+
+        public Foto<T> MostrarFotoAnterior() 
+        {
+            //La lista no está vacía
+            if (Primero != null) 
+            {
+                //Estamos ya en en último nodo y queremos regresar al anterior
+                if (ContActual == ContLDLMax)
+                {
+                    actual = Ultimo.Anterior;
+                    ContActual--;
+                }
+                //Estamos en cuelaquier otro nodo que no sea el primero ni el ultimo
+                else if (ContActual != 0 && ContActual != ContLDLMax)
+                {
+                    actual = actual.Anterior;
+                    ContActual--;
+                }
+                //Estamos en el primer nodo
+                else if (ContActual == 0) 
+                {
+                    actual = Primero;
                 }
                 
             }
